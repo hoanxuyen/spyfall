@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { SpyButtonProp, SpyButtonSize } from "./SpyButton";
+import { SpyButtonProp, SpyButtonSize } from "./SpyButtonType";
 import { Color } from "../theme";
 
 export default function SpyButton({

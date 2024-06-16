@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import SpyButton, { SpyButtonSize } from "../components/SpyButton";
+import SpyButton from "../components/SpyButton";
 import { Color } from "../theme";
+import { SpyButtonSize } from "../components/SpyButtonType";
 
 const meta = {
   title: "Components/SpyButton",
