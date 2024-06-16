@@ -6,6 +6,11 @@ export default {
       fontFamily: {
         honk: ["Honk", "sans-serif"],
       },
+      colors: {
+        primary: '#FFFF97',
+        secondary: '#FF489E',
+        dark: '#242424'
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
