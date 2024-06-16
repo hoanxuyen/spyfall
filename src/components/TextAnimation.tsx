@@ -1,5 +1,4 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import CursorBlinker from "./CursorBlinker";
 import { useEffect } from "react";
 
 export default function TextAnimation({
@@ -23,7 +22,6 @@ export default function TextAnimation({
   return (
     <span className={className}>
       <motion.span>{displayText}</motion.span>
-      <CursorBlinker />
     </span>
   );
 }
