@@ -8,7 +8,7 @@ export default function SpyTitle({
   animation?: string;
 }) {
   return (
-    <h1 className={classNames("title font-honk text-center", animation)}>
+    <h1 className={classNames("title", "font-honk", "text-center", animation)}>
       {label}
     </h1>
   );
