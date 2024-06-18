@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 export enum SpyHeadingType {
   h1 = "h1",
   h2 = "h2",
@@ -7,8 +7,7 @@ export enum SpyHeadingType {
   h5 = "h5",
   h6 = "h6",
 }
-export type SpyHeadingProp = {
-  type: SpyHeadingType;
+export type SpyHeadingProps = HTMLAttributes<HTMLElement> & {
   text: string | ReactElement;
-  className: string;
+  type: SpyHeadingType;
 };

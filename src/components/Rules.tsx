@@ -1,14 +1,14 @@
 import TextAnimation from "./TextAnimation";
 import { motion } from "framer-motion";
-import SpyHeadings from "./typography/SpyHeading";
+import { SpyHeadingType } from "./typography/SpyHeadingType";
+import SpyHeading from "./typography/SpyHeading";
 export default function Rules() {
   return (
     <motion.div initial="hidden" animate="visible">
-      <SpyHeadings
-        type="h2"
-        text={
-          <TextAnimation text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna justo, sodales vitae odio in, blandit euismod magna. Quisque a vulputate ex. In laoreet ac dolor vel laoreet. Vivamus sed sapien mi. In et urna sit amet nibh pharetra vehicula. Maecenas risus leo, hendrerit non lectus ac, aliquet lacinia felis. Maecenas pharetra ligula id turpis mattis posuere. Nulla imperdiet dapibus aliquet." />
-        }
+      <SpyHeading
+        text={<TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />}
+        type={SpyHeadingType.h1}
+        className="font-normal text-white"
       />
       <h2>
         <TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />

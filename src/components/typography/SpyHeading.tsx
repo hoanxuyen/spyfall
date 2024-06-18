@@ -1,42 +1,11 @@
-import classNames from "classnames";
-import { ReactElement } from "react";
-import { SpyHeadingProp } from "./SpyHeadingType";
+import { ReactHTML } from "react";
+import { SpyHeadingProps, SpyHeadingType } from "./SpyHeadingType";
 
-export default function SpyHeadings({ text, className, type }: SpyHeadingProp) {
-  let HeadingTag: ReactElement | null = null;
-
-  switch (type) {
-    case "h1":
-      HeadingTag = (
-        <h1 className={classNames("text-white", className)}>{text}</h1>
-      );
-      break;
-    case "h2":
-      HeadingTag = (
-        <h2 className={classNames("text-white", className)}>{text}</h2>
-      );
-      break;
-    case "h3":
-      HeadingTag = (
-        <h3 className={classNames("text-white", className)}>{text}</h3>
-      );
-      break;
-    case "h4":
-      HeadingTag = (
-        <h4 className={classNames("text-white", className)}>{text}</h4>
-      );
-      break;
-    case "h5":
-      HeadingTag = (
-        <h5 className={classNames("text-white", className)}>{text}</h5>
-      );
-      break;
-    case "h6":
-      HeadingTag = (
-        <h6 className={classNames("text-white", className)}>{text}</h6>
-      );
-      break;
+export default function SpyHeading({ text, type, ...rest }: SpyHeadingProps) {
+  if (Object.values(SpyHeadingType).includes(type)) {
+    const HeadingTag = type as keyof ReactHTML; // ReactHTML dành cho các element cơ bản của HTML(div,span,p,h1,a,...) và JSX.IntrinsicElements cũng có thể dành cho HTML elements hoặc SVG, Custom elements
+    return <HeadingTag {...rest}>{text}</HeadingTag>;
+  } else {
+    return null;
   }
-
-  return HeadingTag;
 }
