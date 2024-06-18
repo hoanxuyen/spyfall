@@ -1,8 +1,15 @@
 import TextAnimation from "./TextAnimation";
 import { motion } from "framer-motion";
+import SpyHeadings from "./typography/SpyHeading";
 export default function Rules() {
   return (
-    <motion.div className="prose-invert" initial="hidden" animate="visible">
+    <motion.div initial="hidden" animate="visible">
+      <SpyHeadings
+        type="h2"
+        text={
+          <TextAnimation text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna justo, sodales vitae odio in, blandit euismod magna. Quisque a vulputate ex. In laoreet ac dolor vel laoreet. Vivamus sed sapien mi. In et urna sit amet nibh pharetra vehicula. Maecenas risus leo, hendrerit non lectus ac, aliquet lacinia felis. Maecenas pharetra ligula id turpis mattis posuere. Nulla imperdiet dapibus aliquet." />
+        }
+      />
       <h2>
         <TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />
       </h2>

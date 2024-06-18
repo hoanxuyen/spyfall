@@ -14,14 +14,10 @@ export default function TextAnimation({
   useEffect(() => {
     // Khi vừa mount component sẽ initiates animation vì sử dụng animation(from,to,options)
     const controls = animate(count, text.length, {
-      duration: 1,
+      duration: 2,
       ease: "easeInOut",
     });
     return controls.stop;
   }, []);
-  return (
-    <span className={className}>
-      <motion.span>{displayText}</motion.span>
-    </span>
-  );
+  return <motion.span className={className}>{displayText}</motion.span>;
 }
