@@ -1,8 +1,15 @@
 import TextAnimation from "./TextAnimation";
 import { motion } from "framer-motion";
+import { SpyHeadingType } from "./typography/SpyHeadingType";
+import SpyHeading from "./typography/SpyHeading";
 export default function Rules() {
   return (
-    <motion.div className="prose-invert" initial="hidden" animate="visible">
+    <motion.div initial="hidden" animate="visible">
+      <SpyHeading
+        text={<TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />}
+        type={SpyHeadingType.h1}
+        className="font-normal text-white"
+      />
       <h2>
         <TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />
       </h2>
