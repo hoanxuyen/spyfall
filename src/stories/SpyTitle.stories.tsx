@@ -7,6 +7,13 @@ const meta: Meta<typeof SpyTitle> = {
   parameters: {
     layout: "centered",
   },
+  decorators: [
+    (Story) => (
+      <div className="prose prose-headings:text-white">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     label: { control: "text" },
     animation: {
