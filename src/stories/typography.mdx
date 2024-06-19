@@ -1,0 +1,66 @@
+import { Meta, Typeset } from "@storybook/blocks";
+
+<Meta title="Typography" />
+
+# Showcasing the versatility of the Bellota font in various weights and sizes:
+
+<div className="prose">
+## Headings
+
+We can use the `h1/h2/h3/h4/h5/h6` tags in any component to display the headings. `h1` for most important heading to `h6` for least important heading.
+
+Typographic scale when using headings in text component:
+
+<Typeset
+  fontSizes={["2.25em", "1.5em", "1.25em", "1em"]}
+  fontWeights={[300, 400, 700]}
+  sampleText="This is Heading"
+  fontFamily="Bellota, serif"
+/>
+## Body Text
+We can use the `p` tag in any component to define a paragraph,comes
+with 5 size:`text-sm` `text-base` `text-lg` `text-xl` `text-2xl` .
+<Typeset
+  fontSizes={["1.5rem", "1.25rem", "1.125rem", "1rem", "0.875rem"]}
+  fontWeights={[400]}
+  sampleText={"Hello world"}
+  fontFamily="Bellota, serif"
+/>
+## Lists 
+### Orderd List
+An ordered list is used if there is a relation/hierarchy between list items. Ordered list items begin with a number
+generally.
+
+Start an ordered list with the `ol` tag.
+
+Add a `li` tag for each list item
+
+<div
+  className="docblock-typeset sb-unstyled css-lfk5jr"
+  style={{ fontFamily: "Bellota,serif" }}
+>
+  <ol className="prose">
+    <li>Ordered list item 1</li>
+    <li>Ordered list item 2</li>
+  </ol>
+</div>
+### Unordered List
+
+An unordered list is used if there is no hierarchy required. Unordered lists start with a bullet.
+
+Start an unordered list with the `ul` tag.
+
+Add a `li` tag for each list item
+
+<div className="docblock-typeset sb-unstyled css-lfk5jr" style={{fontFamily:"Bellota,serif"}}>
+<ul>
+  <li>Unordered list item 1</li>
+  <li>Unordered list item 2</li>
+</ul>
+
+</div>
+## Blockquotes
+<div className="docblock-typeset sb-unstyled css-lfk5jr" style={{fontFamily:"Bellota,serif"}}>
+<blockquote className="prose">This is a blockquote.</blockquote>
+</div>
+</div>
