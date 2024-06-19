@@ -15,7 +15,7 @@ const meta: Meta<typeof SpyParagraph> = {
     text: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-  tags: ["autodocs"],
+  tags: ["autodocs","typography","text"],
 };
 
 export default meta;
