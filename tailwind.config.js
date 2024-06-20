@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         honk: ["Honk", "sans-serif"],
+        bellota: ["Bellota", "serif"],
       },
       colors: {
         primary: "#FFFF97",
