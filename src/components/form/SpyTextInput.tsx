@@ -9,7 +9,7 @@ export type TextInputType = {
   type?: "text" | "number";
 };
 
-export default function FormTextInput({
+export default function SpyTextInput({
   name,
   label,
   rules,

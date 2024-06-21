@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { FormProvider, useForm } from "react-hook-form";
-import FormTextInput from "../components/form/FormTextInput";
+import FormTextInput from "../components/form/SpyTextInput";
 
 const meta: Meta<typeof FormTextInput> = {
   title: "Form/NumberInput",

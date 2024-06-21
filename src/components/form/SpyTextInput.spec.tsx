@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import FormContainer from "./FormContainer";
 import userEvent from "@testing-library/user-event";
-import FormTextInput from "./FormTextInput";
+import SpyForm from "./SpyForm";
+import SpyTextInput from "./SpyTextInput";
 
 describe("FormNumberInput Component", () => {
   const onSubmit = vi.fn();
@@ -13,15 +13,15 @@ describe("FormNumberInput Component", () => {
   };
   beforeEach(() => {
     render(
-      <FormContainer onSubmit={onSubmit}>
-        <FormTextInput
+      <SpyForm onSubmit={onSubmit}>
+        <SpyTextInput
           label="Label"
           name="test"
           type="number"
           rules={{ required: "Error" }}
         />
         <button type="submit">Submit</button>
-      </FormContainer>
+      </SpyForm>
     );
   });
 

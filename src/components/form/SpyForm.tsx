@@ -4,20 +4,15 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-type FormContainerProps = {
+type SpyFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
   children: React.ReactNode;
 };
-export default function FormContainer({
-  onSubmit,
-  children,
-}: FormContainerProps) {
+export default function SpyForm({ onSubmit, children }: SpyFormProps) {
   const methods = useForm();
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
-        {children}
-      </form>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
     </FormProvider>
   );
 }
