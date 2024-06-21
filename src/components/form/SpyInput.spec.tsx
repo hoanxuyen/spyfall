@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SpyForm from "./SpyForm";
-import SpyTextInput from "./SpyTextInput";
+import SpyInput from "./SpyInput";
 
 describe("FormNumberInput Component", () => {
   const onSubmit = vi.fn();
@@ -14,7 +14,7 @@ describe("FormNumberInput Component", () => {
   beforeEach(() => {
     render(
       <SpyForm onSubmit={onSubmit}>
-        <SpyTextInput
+        <SpyInput
           label="Label"
           name="test"
           type="number"

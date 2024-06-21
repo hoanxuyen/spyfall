@@ -2,19 +2,19 @@ import { AnimatePresence } from "framer-motion";
 import { RegisterOptions, useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
 
-export type TextInputType = {
+export type InputType = {
   name: string;
   label: string;
   rules?: RegisterOptions;
   type?: "text" | "number";
 };
 
-export default function SpyTextInput({
+export default function SpyInput({
   name,
   label,
   rules,
   type,
-}: TextInputType) {
+}: InputType) {
   const {
     register,
     formState: { errors },

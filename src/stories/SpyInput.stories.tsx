@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { FormProvider, useForm } from "react-hook-form";
-import SpyTextInput from "../components/form/SpyTextInput";
+import SpyInput from "../components/form/SpyInput";
 
-const meta: Meta<typeof SpyTextInput> = {
-  title: "Form/NumberInput",
-  component: SpyTextInput,
+const meta: Meta<typeof SpyInput> = {
+  title: "Form/Input",
+  component: SpyInput,
   argTypes: {
     name: { control: { disable: true } },
     label: { control: "text" },
@@ -40,7 +40,7 @@ export const WithValidation: Story = {
   },
   render: ({ ...args }) => (
     <>
-      <FormTextInput {...args} />
+      <SpyInput {...args} />
       <button type="submit">Submits</button>
     </>
   ),
