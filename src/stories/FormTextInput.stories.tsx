@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { FormProvider, useForm } from "react-hook-form";
-import FormTextInput from "../components/form/SpyTextInput";
+import SpyTextInput from "../components/form/SpyTextInput";
 
-const meta: Meta<typeof FormTextInput> = {
+const meta: Meta<typeof SpyTextInput> = {
   title: "Form/NumberInput",
-  component: FormTextInput,
+  component: SpyTextInput,
   argTypes: {
     name: { control: { disable: true } },
     label: { control: "text" },
