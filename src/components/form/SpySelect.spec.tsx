@@ -30,7 +30,6 @@ describe("SpySelect Component", () => {
   });
   it("Should render the correct list of options", () => {
     const options = screen.getAllByRole("option");
-    console.log(options);
     expect(options).toHaveLength(3);
     expect(options[0]).toHaveTextContent("a");
     expect(options[1]).toHaveTextContent("asd");
