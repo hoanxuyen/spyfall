@@ -1,42 +1,56 @@
 import { AnimatePresence } from "framer-motion";
-import { Control, RegisterOptions, useController } from "react-hook-form";
+import { RegisterOptions, useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
+
 export type TextInputType = {
-  control: Control;
   name: string;
   label: string;
   rules?: RegisterOptions;
+  type?: "text" | "number";
 };
 
 export default function FormTextInput({
-  control,
   name,
   label,
   rules,
+  type,
 }: TextInputType) {
   const {
-    field,
-    fieldState: { invalid, error },
-  } = useController({
-    name,
-    control,
-    rules,
-  });
-
+    register,
+    formState: { errors },
+  } = useFormContext();
+  /** Có thể dùng useFormContext để trực tiếp access vào tất cả method của form mà nó nằm ở trong
+   *  khác với useController thì formcontext hạn chế prop drilling khi phải pass xuống các method của form quá nhiều lần,
+   *  useController có provides fieldState(invalid , error) object để giúp handling error trực tiếp trong component
+   */
+  const getInputTypes = (type?: string): "text" | "number" => {
+    const validTypes = ["text", "number"];
+    return type && validTypes.includes(type)
+      ? (type as "text" | "number")
+      : "text";
+  };
   return (
     <div>
-      <label>{label}</label>
-      <input {...field} type="text" />
+      <label data-testid="formInputLabel" htmlFor={name}>
+        {label}
+      </label>
+      <input
+        data-testid="formInputElement"
+        {...register(name, rules)}
+        type={getInputTypes(type)}
+      />
+      {/**Animate */}
       <AnimatePresence>
-        {invalid && (
+        {errors[name] && (
           <motion.span
+            data-testid="formInputError"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             style={{ color: "red" }}
             className="block font-bold"
           >
-            {error?.message}
+            {errors[name]?.message?.toString()} {/**Nullish Coalescing */}
           </motion.span>
         )}
       </AnimatePresence>

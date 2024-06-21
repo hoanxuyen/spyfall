@@ -1,23 +1,23 @@
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import FormNumberInput from "./FormNumberInput";
-import FormTextInput from "./FormTextInput";
-
-export default function FormContainer() {
-  const { handleSubmit, control } = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+type FormContainerProps = {
+  onSubmit: SubmitHandler<FieldValues>;
+  children: React.ReactNode;
+};
+export default function FormContainer({
+  onSubmit,
+  children,
+}: FormContainerProps) {
+  const methods = useForm();
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormNumberInput
-        control={control}
-        name="playerCount"
-        label="Vui lòng nhập số lượng người chơi:"
-        rules={{ valueAsNumber: true }}
-      />
-      <FormTextInput
-        control={control}
-        name="playerName"
-        label="Tên người chơi"
-      />
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        {children}
+      </form>
+    </FormProvider>
   );
 }
