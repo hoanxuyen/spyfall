@@ -2,15 +2,11 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SpyForm from "./SpyForm";
 import SpyInput from "./SpyInput";
+import { ElementTestIds } from "../../SpyUlt";
 
 describe("FormNumberInput Component", () => {
   const onSubmit = vi.fn();
   const user = userEvent.setup();
-  const ElementTestIds = {
-    input: "formInputElement",
-    label: "formInputLabel",
-    error: "formInputError",
-  };
   beforeEach(() => {
     render(
       <SpyForm onSubmit={onSubmit}>

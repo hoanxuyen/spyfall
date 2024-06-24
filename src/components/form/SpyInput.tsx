@@ -1,6 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { RegisterOptions, useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
+import classNames from "classnames";
 
 export type InputType = {
   name: string;
@@ -8,38 +9,48 @@ export type InputType = {
   rules?: RegisterOptions;
   type?: "text" | "number";
 };
-
-export default function SpyInput({
-  name,
-  label,
-  rules,
-  type,
-}: InputType) {
+export default function SpyInput({ name, label, rules, type }: InputType) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  /** Có thể dùng useFormContext để trực tiếp access vào tất cả method của form mà nó nằm ở trong
-   *  khác với useController thì formcontext hạn chế prop drilling khi phải pass xuống các method của form quá nhiều lần,
-   *  useController có provides fieldState(invalid , error) object để giúp handling error trực tiếp trong component
-   */
+
   const getInputTypes = (type?: string): "text" | "number" => {
     const validTypes = ["text", "number"];
     return type && validTypes.includes(type)
       ? (type as "text" | "number")
       : "text";
   };
+  const shakeVariants = {
+    shake: {
+      x: [0, 100, -100, 100, 0], // Move left, right, and back to center
+      transition: {
+        duration: 0.3,
+        times: [0, 0.2, 0.4, 0.6, 0.8], // Control timing for smoother shaking
+        ease: "easeOut",
+      },
+    },
+  };
   return (
     <div>
       <label data-testid="formInputLabel" htmlFor={name}>
         {label}
       </label>
-      <input
+      <motion.input
         data-testid="formInputElement"
         {...register(name, rules)}
         type={getInputTypes(type)}
+        className={classNames(
+          "block",
+          "outline-none",
+          "bg-transparent",
+          "transition-all",
+          { "outline-red-300": errors[name] }
+        )}
+        initial={{ x: 0 }}
+        animate={errors[name] ? "shake" : ""}
+        variants={shakeVariants}
       />
-      {/**Animate */}
       <AnimatePresence>
         {errors[name] && (
           <motion.span
@@ -48,9 +59,10 @@ export default function SpyInput({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             style={{ color: "red" }}
-            className="block font-bold"
+            className="block font-bold mt-2"
+            key={name + "-error"} // Ensure a unique key to trigger animation
           >
-            {errors[name]?.message?.toString()} {/**Nullish Coalescing */}
+            {errors[name]?.message?.toString()}
           </motion.span>
         )}
       </AnimatePresence>
