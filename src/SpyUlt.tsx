@@ -4,4 +4,5 @@ export const ElementTestIds = {
   error: "formInputError",
   form: "spyLobbyFormID",
   select: "formSelect",
+  countdownLabel: "countdownLabel",
 };

@@ -1,11 +1,12 @@
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import SpyInput from "./form/SpyInput";
 import SpySelect from "./form/SpySelect";
+import { useDispatch } from "react-redux";
+import { setInitialValue } from "../features/TimerSlice";
 type SpyLobbyFormValues = {
   numberOfPlayers: number;
   timer: number;
 };
-
 const timerOptions = {
   5: "5 phút",
   10: "10 phút",
@@ -16,8 +17,9 @@ export default function SpyLobbyForm() {
   const methods = useForm<SpyLobbyFormValues>({
     defaultValues: { numberOfPlayers: 4, timer: 5 },
   });
+  const dispatch = useDispatch();
   const onSubmit: SubmitHandler<SpyLobbyFormValues> = (data) => {
-    console.log(data);
+    dispatch(setInitialValue(data.timer));
   };
 
   return (
