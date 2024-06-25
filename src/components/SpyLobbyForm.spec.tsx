@@ -2,11 +2,17 @@ import { render, screen } from "@testing-library/react";
 import SpyLobbyForm from "./SpyLobbyForm";
 import userEvent from "@testing-library/user-event";
 import { ElementTestIds } from "../SpyUlt";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 describe("SpyLobbyForm Component", () => {
   const user = userEvent.setup();
   beforeEach(() => {
-    render(<SpyLobbyForm />);
+    render(
+      <Provider store={store}>
+        <SpyLobbyForm />
+      </Provider>
+    );
   });
   it("Should render the form with numberOfPlayers input and timer select", () => {
     expect(screen.getByTestId(ElementTestIds.input)).toBeTruthy();

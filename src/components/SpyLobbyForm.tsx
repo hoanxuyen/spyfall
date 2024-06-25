@@ -17,6 +17,7 @@ export default function SpyLobbyForm() {
   const methods = useForm<SpyLobbyFormValues>({
     defaultValues: { numberOfPlayers: 4, timer: 5 },
   });
+
   const dispatch = useDispatch();
   const onSubmit: SubmitHandler<SpyLobbyFormValues> = (data) => {
     dispatch(setInitialValue(data.timer));
