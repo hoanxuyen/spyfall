@@ -13,7 +13,7 @@ export default function SpySelect({ label, name, list }: SpySelect) {
       <label data-testid="formSelectLabel" htmlFor={name}>
         {label}
       </label>
-      <select {...register(name)} data-testid="formSelect">
+      <select {...register(name)} data-testid="formSelect" className="block">
         {options.map((option, optionIndex) => (
           <option
             key={optionIndex}
