@@ -3,6 +3,11 @@ import SpyInput from "./form/SpyInput";
 import SpySelect from "./form/SpySelect";
 import { useDispatch } from "react-redux";
 import { setInitialValue } from "../features/TimerSlice";
+import {
+  assignLocation,
+  assignSpy,
+  setInitialPlayer,
+} from "../features/PlayerSlice";
 type SpyLobbyFormValues = {
   numberOfPlayers: number;
   timer: number;
@@ -21,6 +26,9 @@ export default function SpyLobbyForm() {
   const dispatch = useDispatch();
   const onSubmit: SubmitHandler<SpyLobbyFormValues> = (data) => {
     dispatch(setInitialValue(data.timer));
+    dispatch(setInitialPlayer(data.numberOfPlayers));
+    dispatch(assignSpy(data.numberOfPlayers));
+    dispatch(assignLocation());
   };
 
   return (

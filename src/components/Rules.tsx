@@ -2,6 +2,8 @@ import TextAnimation from "./TextAnimation";
 import { motion } from "framer-motion";
 import { SpyHeadingType } from "./typography/SpyHeadingType";
 import SpyHeading from "./typography/SpyHeading";
+import PreviewPlayer from "./PreviewPlayer";
+import SpyLobbyForm from "./SpyLobbyForm";
 export default function Rules() {
   return (
     <motion.div initial="hidden" animate="visible">
@@ -13,6 +15,8 @@ export default function Rules() {
       <h2>
         <TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />
       </h2>
+      <SpyLobbyForm />
+      <PreviewPlayer />
       <p>
         <TextAnimation
           text="Gần đây thông tin tình báo của các bạn đã bị lộ ra, một người trong các

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { SpyButtonProp, SpyButtonSize } from "./SpyButtonType";
 import { Color } from "../theme";
-
+import { motion } from "framer-motion";
 export default function SpyButton({
   label,
   onClick,
@@ -33,15 +33,17 @@ export default function SpyButton({
   };
 
   return (
-    <button
+    <motion.button
       className={classNames(
         "rounded-xl",
         getButtonColor(color),
         getButtonSize(size)
       )}
       onClick={onClick}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 1.2 }}
     >
       {label}
-    </button>
+    </motion.button>
   );
 }
