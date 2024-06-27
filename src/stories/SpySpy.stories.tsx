@@ -1,12 +1,12 @@
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { Meta, StoryObj } from "@storybook/react";
-import SpyPlayerComponent from "../components/SpyPlayerComponent";
 import SpyAnnounceRole from "../components/SpyAnnounceRole";
+import SpySpy from "../components/SpySpy";
 
 const meta: Meta<typeof SpyAnnounceRole> = {
   title: "Components/Announce Player",
-  component: SpyPlayerComponent,
+  component: SpySpy,
   parameters: { layout: "centered" },
   decorators: [
     (Story) => (
@@ -18,4 +18,4 @@ const meta: Meta<typeof SpyAnnounceRole> = {
 };
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const PlayerAnnounce: Story = {};
+export const SpyAnnounce: Story = {};

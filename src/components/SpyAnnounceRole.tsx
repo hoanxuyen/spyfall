@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import PlayerComponent from "./SpyPlayerComponent";
-import SpyComponent from "./SpySpyComponent";
-import ReadyComponent from "./SpyReadyComponent";
 import { AnimatePresence } from "framer-motion";
 import SpyButton from "./SpyButton";
 import { SpyButtonSize } from "./SpyButtonType";
 import { Color } from "../theme";
 import { nextPlayer, setReady } from "../features/PlayerSlice";
+import SpyReady from "./SpyReady";
+import SpySpy from "./SpySpy";
+import SpyPlayer from "./SpyPlayer";
 export default function SpyAnnounceRole() {
   const spyIndex = useSelector(
     (state: RootState) => state.PlayerSlice.spyIndex
@@ -30,11 +30,11 @@ export default function SpyAnnounceRole() {
       <AnimatePresence>
         <div>
           {!ready ? (
-            <ReadyComponent key="ready" />
+            <SpyReady key="ready" />
           ) : currentPlayerIndex === spyIndex ? (
-            <SpyComponent key="spy" />
+            <SpySpy key="spy" />
           ) : (
-            <PlayerComponent key="player" />
+            <SpyPlayer key="player" />
           )}
         </div>
       </AnimatePresence>

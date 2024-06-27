@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { motion } from "framer-motion";
-
-export default function SpyReadyComponent() {
-  const currentPlayerIndex = useSelector(
-    (state: RootState) => state.PlayerSlice.currentPlayerIndex
+export default function SpySpy() {
+  const spyIndex = useSelector(
+    (state: RootState) => state.PlayerSlice.spyIndex as number
   );
   const animationVariants = {
     initial: { opacity: 0, y: 20 },
@@ -18,7 +17,14 @@ export default function SpyReadyComponent() {
       animate="animate"
       exit="exit"
     >
-      <p>Người chơi số: {currentPlayerIndex + 1} sẵn sàng chưa?</p>
+      <motion.p
+        className="text-red-300 font-bold"
+        animate={{ scale: 1.1 }}
+        transition={{ delay: 0.5 }}
+        data-testid="spyAnnouceLabel"
+      >
+        Người chơi số {spyIndex + 1}, bạn là điệp viên{"🤫"}
+      </motion.p>
     </motion.div>
   );
 }
