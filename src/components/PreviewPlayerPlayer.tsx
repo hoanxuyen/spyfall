@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { RootState } from "../store/store";
 import { motion } from "framer-motion";
 export default function PlayerComponent() {
   const currentPlayerIndex = useSelector(
@@ -21,7 +21,9 @@ export default function PlayerComponent() {
       animate="animate"
       exit="exit"
     >
-      <p className="font-bold">Người chơi số {currentPlayerIndex + 1}</p>
+      <p className="font-bold" data-testid="playerAnnouceLabel">
+        Người chơi số {currentPlayerIndex + 1}
+      </p>
       <p>Địa điểm là: {location}</p>
     </motion.div>
   );

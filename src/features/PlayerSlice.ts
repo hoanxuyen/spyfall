@@ -13,7 +13,7 @@ const initialState: PlayerStateType = {
   currentPlayerIndex: 0,
   ready: false,
 };
-const locationList = [
+export const locationList = [
   "Vòng xoay Lăng Cha Cả",
   "Maximark Cộng Hoà",
   "Hồ Con Rùa",
@@ -60,8 +60,9 @@ export const playerSlice = createSlice({
         locationList[Math.floor(Math.random() * locationList.length)];
     },
     nextPlayer: (state) => {
-      state.currentPlayerIndex =
-        (state.currentPlayerIndex + 1) % (state.value as number);
+      if (state.value !== null && state.currentPlayerIndex < state.value - 1) {
+        state.currentPlayerIndex += 1;
+      }
       state.ready = false;
     },
     setReady: (state, action) => {

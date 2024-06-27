@@ -21,6 +21,7 @@ export default function SpyComponent() {
         className="text-red-300 font-bold"
         animate={{ scale: 1.1 }}
         transition={{ delay: 0.5 }}
+        data-testid="spyAnnouceLabel"
       >
         Người chơi số {spyIndex + 1}, bạn là điệp viên{"🤫"}
       </motion.p>

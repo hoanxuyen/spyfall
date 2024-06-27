@@ -20,6 +20,13 @@ const meta: Meta<typeof SpyTitle> = {
       ],
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="prose">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

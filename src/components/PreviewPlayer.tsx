@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import PlayerComponent from "./PreviewPlayer/Player";
+import PlayerComponent from "./PreviewPlayerPlayer";
 import SpyComponent from "./PreviewPlayerSpy";
 import ReadyComponent from "./PreviewPlayerReady";
 import { AnimatePresence } from "framer-motion";
