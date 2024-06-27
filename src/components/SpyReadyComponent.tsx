@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { motion } from "framer-motion";
 
-export default function ReadyComponent() {
+export default function SpyReadyComponent() {
   const currentPlayerIndex = useSelector(
     (state: RootState) => state.PlayerSlice.currentPlayerIndex
   );

@@ -1,7 +1,6 @@
 import { Store, configureStore } from "@reduxjs/toolkit";
 import { act, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import PreviewPlayer from "./PreviewPlayer";
 import PlayerSlice, {
   setInitialPlayer,
   setReady,
@@ -10,6 +9,7 @@ import PlayerSlice, {
 import { beforeEach, describe, expect, it } from "vitest";
 import { ElementTestIds } from "../SpyUlt";
 import userEvent from "@testing-library/user-event";
+import SpyAnnounceRole from "./SpyAnnounceRole";
 describe("PreviewPlayer component", () => {
   let mockStore: Store;
   const user = userEvent.setup();
@@ -18,7 +18,7 @@ describe("PreviewPlayer component", () => {
     mockStore.dispatch(setInitialPlayer(4));
     render(
       <Provider store={mockStore}>
-        <PreviewPlayer />
+        <SpyAnnounceRole />
       </Provider>
     );
   });
@@ -41,13 +41,20 @@ describe("PreviewPlayer component", () => {
     expect(screen.getByTestId(ElementTestIds.playerLabel)).toBeInTheDocument(); // check đúng playerComponent
   });
   it(`should change state to ready when click "Đã sẵn sàng" button`, async () => {
-    await user.click(screen.getByRole("button"));
+    await act(async () => {
+      await user.click(screen.getByRole("button"));
+    });
     expect(mockStore.getState().PlayerSlice.ready).toBe(true);
   });
   it(`Should dispatch nextPlayer and setReady(false) when "Oke" button is clicked`, async () => {
-    mockStore.dispatch(setReady(true));
+    act(() => {
+      mockStore.dispatch(setReady(true));
+    });
+
     const state = mockStore.getState().PlayerSlice;
-    await user.click(screen.getByRole("button"));
+    await act(async () => {
+      await user.click(screen.getByRole("button"));
+    });
     const newState = mockStore.getState().PlayerSlice;
     expect(newState.ready).toBe(false);
     expect(newState.currentPlayerIndex).toBe(state.currentPlayerIndex + 1);

@@ -1,12 +1,12 @@
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { Meta, StoryObj } from "@storybook/react";
-import PreviewPlayer from "../components/PreviewPlayer";
-import ReadyComponent from "../components/PreviewPlayerReady";
+import SpySpyComponent from "../components/SpySpyComponent";
+import SpyAnnounceRole from "../components/SpyAnnounceRole";
 
-const meta: Meta<typeof PreviewPlayer> = {
-  title: "Components/PreviewPlayer",
-  component: ReadyComponent,
+const meta: Meta<typeof SpyAnnounceRole> = {
+  title: "Components/Announce Player",
+  component: SpySpyComponent,
   parameters: { layout: "centered" },
   decorators: [
     (Story) => (
@@ -18,4 +18,4 @@ const meta: Meta<typeof PreviewPlayer> = {
 };
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const ReadyAnnounce: Story = {};
+export const SpyAnnounce: Story = {};

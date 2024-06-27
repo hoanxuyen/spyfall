@@ -1,19 +1,15 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { motion } from "framer-motion";
-export default function PlayerComponent() {
-  const currentPlayerIndex = useSelector(
-    (state: RootState) => state.PlayerSlice.currentPlayerIndex
-  );
-  const location = useSelector(
-    (state: RootState) => state.PlayerSlice.location
+export default function SpySpyComponent() {
+  const spyIndex = useSelector(
+    (state: RootState) => state.PlayerSlice.spyIndex as number
   );
   const animationVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
   };
-
   return (
     <motion.div
       variants={animationVariants}
@@ -21,10 +17,14 @@ export default function PlayerComponent() {
       animate="animate"
       exit="exit"
     >
-      <p className="font-bold" data-testid="playerAnnouceLabel">
-        Người chơi số {currentPlayerIndex + 1}
-      </p>
-      <p>Địa điểm là: {location}</p>
+      <motion.p
+        className="text-red-300 font-bold"
+        animate={{ scale: 1.1 }}
+        transition={{ delay: 0.5 }}
+        data-testid="spyAnnouceLabel"
+      >
+        Người chơi số {spyIndex + 1}, bạn là điệp viên{"🤫"}
+      </motion.p>
     </motion.div>
   );
 }
