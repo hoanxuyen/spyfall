@@ -5,4 +5,6 @@ export const ElementTestIds = {
   form: "spyLobbyFormID",
   select: "formSelect",
   countdownLabel: "countdownLabel",
+  spyLabel: "spyAnnouceLabel",
+  playerLabel: "playerAnnouceLabel",
 };
