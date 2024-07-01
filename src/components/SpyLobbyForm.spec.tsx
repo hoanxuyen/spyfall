@@ -27,7 +27,7 @@ describe("SpyLobbyForm Component", () => {
   });
   it("Should show error if numberOfPlayers is less than 3", async () => {
     const inputElement = screen.getByTestId(ElementTestIds.input);
-    const button = screen.getByRole("button");
+    const button = screen.getByText("Bắt đầu trò chơi");
     await user.clear(inputElement);
     await user.type(inputElement, "2");
     await user.click(button);

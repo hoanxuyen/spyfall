@@ -1,5 +1,5 @@
 import "./index.css";
-import MainMenu from "./components/MainMenu";
+import MainMenu from "./components/SpyMainMenu";
 
 function App() {
   return <MainMenu />;

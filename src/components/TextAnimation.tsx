@@ -14,7 +14,7 @@ export default function TextAnimation({
   useEffect(() => {
     // Khi vừa mount component sẽ initiates animation vì sử dụng animation(from,to,options)
     const controls = animate(count, text.length, {
-      duration: 2,
+      duration: 1,
       ease: "easeInOut",
     });
     return controls.stop;

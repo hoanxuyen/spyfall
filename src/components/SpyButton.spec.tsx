@@ -19,26 +19,6 @@ describe("Spy Button", () => {
 
     expect(screen.getByRole("button")).toBeTruthy();
   });
-  /**
-   * Manual Version 
-  it("should have the correct color class when color is primary", () => {
-    render(
-      <SpyButton
-        label="Test"
-        size={SpyButtonSize.MD}
-        color={Color.Primary}
-        onClick={() => {}}
-      />
-    );
-    expect(
-      screen.getByRole("button").classList.contains("bg-primary")
-    ).toBeTruthy();
-    expect(
-      screen.getByRole("button").classList.contains("text-dark")
-    ).toBeTruthy();
-  });
-   */
-  // Fast
   it.each`
     color              | expected
     ${Color.Primary}   | ${["bg-primary", "text-dark"]}

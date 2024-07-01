@@ -9,7 +9,8 @@ export enum SpyButtonSize {
 
 export type SpyButtonProp = {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   color: Color;
   size: SpyButtonSize;
+  type?: "button" | "submit" | "reset";
 };
