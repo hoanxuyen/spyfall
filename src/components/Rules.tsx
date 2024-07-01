@@ -10,9 +10,6 @@ export default function Rules() {
         type={SpyHeadingType.h1}
         className="font-normal text-white"
       />
-      <h2>
-        <TextAnimation text="Trong số các bạn có một kẻ nằm vùng!" />
-      </h2>
       <p>
         <TextAnimation
           text="Gần đây thông tin tình báo của các bạn đã bị lộ ra, một người trong các

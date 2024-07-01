@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import { RegisterOptions, useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
 import classNames from "classnames";
+import { FormLabelClass } from "../../SpyUlt";
 
 export type InputType = {
   name: string;
@@ -33,7 +34,11 @@ export default function SpyInput({ name, label, rules, type }: InputType) {
   };
   return (
     <div>
-      <label data-testid="formInputLabel" htmlFor={name}>
+      <label
+        data-testid="formInputLabel"
+        htmlFor={name}
+        className={FormLabelClass}
+      >
         {label}
       </label>
       <motion.input

@@ -7,6 +7,7 @@ export default function SpyButton({
   onClick,
   color,
   size,
+  type,
 }: SpyButtonProp) {
   const getButtonColor = (color: Color): string[] => {
     switch (color) {
@@ -39,6 +40,7 @@ export default function SpyButton({
         getButtonColor(color),
         getButtonSize(size)
       )}
+      type={type}
       onClick={onClick}
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 1.2 }}

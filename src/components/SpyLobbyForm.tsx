@@ -8,6 +8,10 @@ import {
   assignSpy,
   setInitialPlayer,
 } from "../features/PlayerSlice";
+import SpyButton from "./SpyButton";
+import { Color } from "../theme";
+import { SpyButtonSize } from "./SpyButtonType";
+import { setOpen } from "../features/ModalSlice";
 type SpyLobbyFormValues = {
   numberOfPlayers: number;
   timer: number;
@@ -38,24 +42,39 @@ export default function SpyLobbyForm() {
         data-testid="spyLobbyFormID"
         className="space-y-4"
       >
-        <SpyInput
-          name="numberOfPlayers"
-          label="Số lượng người chơi"
-          type="number"
-          rules={{
-            required: "Yêu cầu nhập số lượng người chơi",
-            min: {
-              value: 3,
-              message: "Yêu cầu danh sách người chơi tối thiểu hai 3 người",
-            },
-          }}
-        />
-        <SpySelect
-          name="timer"
-          label="Chọn thời gian chơi"
-          list={timerOptions}
-        />
-        <button type="submit">Start Game</button>
+        <div className="form-content border border-white p-6">
+          <SpyInput
+            name="numberOfPlayers"
+            label="Số lượng người chơi"
+            type="number"
+            rules={{
+              required: "Yêu cầu nhập số lượng người chơi",
+              min: {
+                value: 3,
+                message: "Yêu cầu danh sách người chơi tối thiểu hai 3 người",
+              },
+            }}
+          />
+          <SpySelect
+            name="timer"
+            label="Chọn thời gian chơi"
+            list={timerOptions}
+          />
+        </div>
+        <div className="form-butons flex flex-row gap-2 ">
+          <SpyButton
+            label="Bắt đầu trò chơi"
+            color={Color.Primary}
+            size={SpyButtonSize.MD}
+            type="submit"
+          />
+          <SpyButton
+            label="?"
+            color={Color.Secondary}
+            size={SpyButtonSize.MD}
+            onClick={() => dispatch(setOpen(true))}
+          />
+        </div>
       </form>
     </FormProvider>
   );

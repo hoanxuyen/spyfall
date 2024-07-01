@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { FormLabelClass } from "../../SpyUlt";
 
 export type SpySelect = {
   label: string;
@@ -10,7 +11,11 @@ export default function SpySelect({ label, name, list }: SpySelect) {
   const { register } = useFormContext();
   return (
     <div>
-      <label data-testid="formSelectLabel" htmlFor={name}>
+      <label
+        data-testid="formSelectLabel"
+        htmlFor={name}
+        className={FormLabelClass}
+      >
         {label}
       </label>
       <select {...register(name)} data-testid="formSelect" className="block">

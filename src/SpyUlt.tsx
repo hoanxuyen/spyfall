@@ -8,3 +8,4 @@ export const ElementTestIds = {
   spyLabel: "spyAnnouceLabel",
   playerLabel: "playerAnnouceLabel",
 };
+export const FormLabelClass = "text-2xl font-bold";
