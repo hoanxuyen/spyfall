@@ -7,6 +7,7 @@ import { Color } from "../theme";
 import { SpyButtonSize } from "./SpyButtonType";
 import { useNavigate } from "react-router-dom";
 import { resetPlayers } from "../features/PlayerSlice";
+import ReactConfetti from "react-confetti";
 
 export default function SpyReveal() {
   const spyIndex = useSelector(
@@ -16,6 +17,7 @@ export default function SpyReveal() {
   const dispatch = useDispatch();
   return (
     <div className="space-y-4">
+      <ReactConfetti recycle={false} numberOfPieces={1000} />
       <SpyHeading
         text={`Chúc mừng bạn đã đoán ra được số ${(spyIndex as number) + 1} chính là điệp viên`}
         type={SpyHeadingType.h1}
