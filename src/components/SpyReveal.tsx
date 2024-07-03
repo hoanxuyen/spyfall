@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import SpyHeading from "./typography/SpyHeading";
 import { SpyHeadingType } from "./typography/SpyHeadingType";
@@ -6,7 +6,6 @@ import SpyButton from "./SpyButton";
 import { Color } from "../theme";
 import { SpyButtonSize } from "./SpyButtonType";
 import { useNavigate } from "react-router-dom";
-import { resetPlayers } from "../features/PlayerSlice";
 import ReactConfetti from "react-confetti";
 
 export default function SpyReveal() {
@@ -14,7 +13,6 @@ export default function SpyReveal() {
     (state: RootState) => state.PlayerSlice.spyIndex
   );
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   return (
     <div className="space-y-4">
       <ReactConfetti recycle={false} numberOfPieces={1000} />
@@ -34,7 +32,6 @@ export default function SpyReveal() {
           label="Có"
           size={SpyButtonSize.MD}
           onClick={() => {
-            dispatch(resetPlayers());
             navigate("/lobby");
           }}
           customClass="w-20"
@@ -44,7 +41,6 @@ export default function SpyReveal() {
           label="Không"
           size={SpyButtonSize.MD}
           onClick={() => {
-            dispatch(resetPlayers());
             navigate("/");
           }}
           customClass="w-20"
