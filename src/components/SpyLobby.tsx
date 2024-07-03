@@ -10,7 +10,7 @@ import { setOpen } from "../features/ModalSlice";
 export default function SpyLobby() {
   const dispatch = useDispatch();
   return (
-    <div className="w-fit mx-auto my-auto">
+    <div className="flex h-full justify-center items-center">
       <SpyLobbyForm />
       <SpyModal>
         <Rules />

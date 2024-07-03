@@ -7,6 +7,7 @@ export default function SpyButton({
   onClick,
   color,
   size,
+  customClass,
   type,
 }: SpyButtonProp) {
   const getButtonColor = (color: Color): string[] => {
@@ -37,13 +38,14 @@ export default function SpyButton({
     <motion.button
       className={classNames(
         "rounded-xl",
+        customClass,
         getButtonColor(color),
         getButtonSize(size)
       )}
       type={type}
       onClick={onClick}
-      whileHover={{ scale: 1.2 }}
-      whileTap={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 1.1 }}
     >
       {label}
     </motion.button>

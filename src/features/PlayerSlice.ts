@@ -62,11 +62,14 @@ export const playerSlice = createSlice({
     nextPlayer: (state) => {
       if (state.value !== null && state.currentPlayerIndex < state.value - 1) {
         state.currentPlayerIndex += 1;
+        state.ready = false;
       }
-      state.ready = false;
     },
     setReady: (state, action) => {
       state.ready = action.payload;
+    },
+    resetPlayers: () => {
+      return initialState;
     },
   },
 });
@@ -76,5 +79,6 @@ export const {
   assignLocation,
   nextPlayer,
   setReady,
+  resetPlayers,
 } = playerSlice.actions;
 export default playerSlice.reducer;

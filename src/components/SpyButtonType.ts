@@ -13,4 +13,5 @@ export type SpyButtonProp = {
   color: Color;
   size: SpyButtonSize;
   type?: "button" | "submit" | "reset";
+  customClass?: string;
 };

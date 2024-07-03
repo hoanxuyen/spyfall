@@ -8,25 +8,33 @@ import { nextPlayer, setReady } from "../features/PlayerSlice";
 import SpyReady from "./SpyReady";
 import SpySpy from "./SpySpy";
 import SpyPlayer from "./SpyPlayer";
+import { useNavigate } from "react-router-dom";
 export default function SpyAnnounceRole() {
   const spyIndex = useSelector(
     (state: RootState) => state.PlayerSlice.spyIndex
+  );
+  const totalPlayer = useSelector(
+    (state: RootState) => state.PlayerSlice.value
   );
   const currentPlayerIndex = useSelector(
     (state: RootState) => state.PlayerSlice.currentPlayerIndex
   );
   const ready = useSelector((state: RootState) => state.PlayerSlice.ready);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onBtnClick = () => {
     if (ready) {
-      dispatch(nextPlayer());
-      dispatch(setReady(false));
+      if (currentPlayerIndex + 1 === totalPlayer) {
+        navigate("/discuss");
+      } else {
+        dispatch(nextPlayer());
+      }
     } else {
       dispatch(setReady(true));
     }
   };
   return (
-    <div className="text-center text-3xl">
+    <div className="text-center text-3xl flex flex-col justify-center items-center">
       <AnimatePresence>
         <div>
           {!ready ? (
