@@ -10,6 +10,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { ElementTestIds } from "../SpyUlt";
 import userEvent from "@testing-library/user-event";
 import SpyAnnounceRole from "./SpyAnnounceRole";
+import { BrowserRouter } from "react-router-dom";
 describe("PreviewPlayer component", () => {
   let mockStore: Store;
   const user = userEvent.setup();
@@ -18,7 +19,9 @@ describe("PreviewPlayer component", () => {
     mockStore.dispatch(setInitialPlayer(4));
     render(
       <Provider store={mockStore}>
-        <SpyAnnounceRole />
+        <BrowserRouter>
+          <SpyAnnounceRole />
+        </BrowserRouter>
       </Provider>
     );
   });

@@ -23,7 +23,7 @@ export default function Rules() {
         nhiệm vụ của các bạn là tìm ra hắn nhanh nhất có thể!"
         />
       </p>
-      <h2>
+      <h2 className="m-0">
         <TextAnimation text="Cách chơi:" />
       </h2>
       <ol>

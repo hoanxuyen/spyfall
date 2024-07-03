@@ -5,6 +5,7 @@ import playerReducer, {
   nextPlayer,
   setReady,
   locationList,
+  resetPlayers,
 } from "./PlayerSlice";
 describe("PlayerSlice's Reducer", () => {
   const initialState = {
@@ -38,8 +39,7 @@ describe("PlayerSlice's Reducer", () => {
       vi.spyOn(global.Math, "random").mockReturnValueOnce(0.01);
       const state = { ...initialState };
       const newState = playerReducer(state, assignLocation());
-      expect(newState.location).toBe(locationList[0])
-
+      expect(newState.location).toBe(locationList[0]);
     });
   });
   describe("nextPlayer reducer", () => {
@@ -61,6 +61,18 @@ describe("PlayerSlice's Reducer", () => {
       const state = { ...initialState, ready: false };
       const newState = playerReducer(state, setReady(true));
       expect(newState.ready).toBe(true);
+    });
+  });
+  describe("resetPlayers reducer", () => {
+    it("Should reset the playerSlice to initialState", () => {
+      const modifiedState = {
+        ...initialState,
+        currentPlayerIndex: 3,
+        ready: true,
+      };
+      expect(playerReducer(modifiedState, resetPlayers())).toEqual(
+        initialState
+      );
     });
   });
 });

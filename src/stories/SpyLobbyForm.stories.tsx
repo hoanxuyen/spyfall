@@ -1,5 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import SpyLobbyForm from "../components/SpyLobbyForm";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 const meta: Meta<typeof SpyLobbyForm> = {
   title: "Form/Lobby Form",
@@ -9,9 +12,11 @@ const meta: Meta<typeof SpyLobbyForm> = {
   },
   decorators: [
     (Story) => (
-      <div className="border p-4">
-        <Story />
-      </div>
+      <BrowserRouter>
+        <Provider store={store}>
+            <Story />
+        </Provider>
+      </BrowserRouter>
     ),
   ],
 };

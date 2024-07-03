@@ -6,12 +6,14 @@ import { setInitialValue } from "../features/TimerSlice";
 import {
   assignLocation,
   assignSpy,
+  resetPlayers,
   setInitialPlayer,
 } from "../features/PlayerSlice";
 import SpyButton from "./SpyButton";
 import { Color } from "../theme";
 import { SpyButtonSize } from "./SpyButtonType";
 import { setOpen } from "../features/ModalSlice";
+import { useNavigate } from "react-router-dom";
 type SpyLobbyFormValues = {
   numberOfPlayers: number;
   timer: number;
@@ -23,16 +25,19 @@ const timerOptions = {
 };
 
 export default function SpyLobbyForm() {
+  const navigate = useNavigate();
   const methods = useForm<SpyLobbyFormValues>({
     defaultValues: { numberOfPlayers: 4, timer: 5 },
   });
 
   const dispatch = useDispatch();
   const onSubmit: SubmitHandler<SpyLobbyFormValues> = (data) => {
+    dispatch(resetPlayers());
     dispatch(setInitialValue(data.timer));
-    dispatch(setInitialPlayer(data.numberOfPlayers));
+    dispatch(setInitialPlayer(+data.numberOfPlayers));
     dispatch(assignSpy(data.numberOfPlayers));
     dispatch(assignLocation());
+    navigate("/roles");
   };
 
   return (
@@ -67,9 +72,11 @@ export default function SpyLobbyForm() {
             color={Color.Primary}
             size={SpyButtonSize.MD}
             type="submit"
+            customClass="basis-full"
           />
           <SpyButton
             label="?"
+            type="button"
             color={Color.Secondary}
             size={SpyButtonSize.MD}
             onClick={() => dispatch(setOpen(true))}

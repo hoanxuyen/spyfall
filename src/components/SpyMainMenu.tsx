@@ -4,10 +4,10 @@ import Rules from "./Rules";
 import SpyButton from "./SpyButton";
 import { SpyButtonSize } from "./SpyButtonType";
 import { motion } from "framer-motion";
-export default function MainMenu() {
+export default function SpyMainMenu() {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="text-base sm:text-xl">
       <Rules />
       <motion.div
         initial={{ opacity: 0 }}

@@ -4,13 +4,29 @@ import userEvent from "@testing-library/user-event";
 import { ElementTestIds } from "../SpyUlt";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { BrowserRouter } from "react-router-dom";
 
+const mockUseNavigate = vi.fn();
+vi.mock("react-router-dom", async () => {
+  const mod =
+    await vi.importActual<typeof import("react-router-dom")>(
+      "react-router-dom"
+    );
+  return {
+    ...mod,
+    useNavigate: () => mockUseNavigate,
+  };
+});
+// @ts-expect-error ignore
+window.scrollTo = vi.fn();
 describe("SpyLobbyForm Component", () => {
   const user = userEvent.setup();
   beforeEach(() => {
     render(
       <Provider store={store}>
-        <SpyLobbyForm />
+        <BrowserRouter>
+          <SpyLobbyForm />
+        </BrowserRouter>
       </Provider>
     );
   });
@@ -45,5 +61,13 @@ describe("SpyLobbyForm Component", () => {
       numberOfPlayers: 6,
       timer: "15",
     });
+  });
+  it("Should redirect to /roles after hitting submit", async () => {
+    const inputElement = screen.getByTestId(ElementTestIds.input);
+    const button = screen.getByText("Bắt đầu trò chơi");
+    await user.clear(inputElement);
+    await user.type(inputElement, "4");
+    await user.click(button);
+    expect(mockUseNavigate).toHaveBeenCalledWith("/roles");
   });
 });
