@@ -99,6 +99,27 @@ export const playerSlice = createSlice({
     updateCustomLocations: (state, action) => {
       state.customLocations = action.payload;
     },
+    removeLocation: (state, action) => {
+      const { typeLocation, index } = action.payload;
+      switch (typeLocation) {
+        case "location":
+          {
+            const newLocations = [
+              ...state.locations.slice(0, index),
+              ...state.locations.slice(index + 1),
+            ];
+            state.locations = newLocations;
+          }
+          break;
+        case "customLocation": {
+          const newCustomLocations = [
+            ...state.customLocations.slice(0, index),
+            ...state.customLocations.slice(index + 1),
+          ];
+          state.customLocations = newCustomLocations;
+        }
+      }
+    },
     showOption: (state, action) => {
       state.locationsOption = action.payload;
     },
@@ -136,6 +157,7 @@ export const {
   updateLocations,
   updateCustomLocations,
   showOption,
+  removeLocation,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
