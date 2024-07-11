@@ -34,9 +34,9 @@ export default function SpyAnnounceRole() {
     }
   };
   return (
-    <div className="text-center text-3xl flex flex-col justify-center items-center">
+    <div className="text-center flex flex-col justify-center items-center h-full">
       <AnimatePresence>
-        <div>
+        <div className="text-3xl">
           {!ready ? (
             <SpyReady key="ready" />
           ) : currentPlayerIndex === spyIndex ? (
@@ -51,6 +51,7 @@ export default function SpyAnnounceRole() {
         size={SpyButtonSize.XL}
         color={ready ? Color.Primary : Color.Secondary}
         onClick={onBtnClick}
+        customClass="text-xl w-full sm:w-1/2"
       />
     </div>
   );

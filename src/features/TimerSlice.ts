@@ -1,11 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+type TimerState = {
+  value: number;
+};
+const initialState: TimerState = {
+  value: 300,
+};
 export const timerSlice = createSlice({
   name: "timer",
-  initialState: {
-    value: 0,
-  },
+  initialState,
   reducers: {
-    setInitialValue: (state, action) => {
+    setInitialValue: (state, action: PayloadAction<number>) => {
       state.value = action.payload * 60;
     },
     decrement: (state) => {
@@ -17,4 +21,3 @@ export const timerSlice = createSlice({
 });
 export const { decrement, setInitialValue } = timerSlice.actions;
 export default timerSlice.reducer;
-
