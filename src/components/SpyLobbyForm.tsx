@@ -108,7 +108,7 @@ export default function SpyLobbyForm() {
         data-testid="spyLobbyFormID"
         className="space-y-4 w-full sm:w-1/2 text-sm sm:text-base"
       >
-        <div className="form-content border border-white p-6">
+        <div className="form-content border border-dark dark:border-white p-6">
           <SpyInput
             name="numberOfPlayers"
             label="Số lượng người chơi"

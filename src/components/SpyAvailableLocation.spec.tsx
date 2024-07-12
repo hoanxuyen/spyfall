@@ -1,10 +1,12 @@
 import { configureStore, Store } from "@reduxjs/toolkit";
 import PlayerSlice, {
   LocationSource,
+  removeLocation,
 } from "../features/PlayerSlice";
 import { Provider } from "react-redux";
 import SpyAvailableLocation from "./SpyAvailableLocation";
-import { render, screen} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 describe("SpyAvailableLocation component", () => {
   let mockStore: Store;
@@ -37,23 +39,12 @@ describe("SpyAvailableLocation component", () => {
     expect(screen.getByText("Maximark Cộng Hoà")).toBeInTheDocument();
     expect(screen.getByText("Hồ Con Rùa")).toBeInTheDocument();
   });
-  // it(`Should remove a location when "X" button is clicked`, async () => {
-  //   const removeButtons = screen.getAllByText("X");
-  //   await user.click(removeButtons[0]);
-  //   await waitFor(() => {
-  //     expect(
-  //       screen.queryByText("Vòng xoay Lăng Cha Cả")
-  //     ).not.toBeInTheDocument();
-  //   });
-  //   expect(mockStore.dispatch).toHaveBeenCalledWith(
-  //     updateLocations(["Maximark Cộng Hoà", "Hồ Con Rùa"])
-  //   );
-  // });
-  // it("Should dispatch updateLocations action when a location is removed", async () => {
-  //   const removeButtons = screen.getAllByText("X");
-  //   await user.click(removeButtons[0]);
-  //   expect(mockStore.dispatch).toHaveBeenCalledWith(
-  //     updateLocations(["Maximark Cộng Hoà", "Hồ Con Rùa"])
-  //   );
-  // });
+  it("Should dispatch removeLocation action when removebutton is clicked", async () => {
+    const user = userEvent.setup();
+    const removeButtons = screen.getAllByText("X");
+    await user.click(removeButtons[0]);
+    expect(mockStore.dispatch).toHaveBeenCalledWith(
+      removeLocation({ typeLocation: "location", index: 0 })
+    );
+  });
 });
