@@ -3,9 +3,12 @@ import SpyHeading from "./typography/SpyHeading";
 import { SpyHeadingType } from "./typography/SpyHeadingType";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { removeLocation } from "../features/PlayerSlice";
+import { LocationSource, removeLocation } from "../features/PlayerSlice";
 import { RootState } from "../store/store";
 import { LocationsTagClass, LocationTagsRemoveBtn } from "../SpyUlt";
+import SpyButton from "./SpyButton";
+import { Color } from "../theme";
+import { SpyButtonSize } from "./SpyButtonType";
 export default function SpyAvailableLocation() {
   const dispatch = useDispatch();
   const locations: string[] = useSelector(
@@ -25,20 +28,20 @@ export default function SpyAvailableLocation() {
               exit={{ opacity: 0, y: -20 }}
             >
               <p className="m-0">{location}</p>
-              <button
+              <SpyButton
+                label="X"
+                color={Color.None}
+                size={SpyButtonSize.SM}
+                customClass={LocationTagsRemoveBtn}
                 onClick={() =>
                   dispatch(
                     removeLocation({
-                      typeLocation: "location",
+                      locationSource: LocationSource.DEFAULT,
                       index: locationIndex,
                     })
                   )
                 }
-                aria-label="removeBtn"
-                className={LocationTagsRemoveBtn}
-              >
-                X
-              </button>
+              />
             </motion.div>
           ))}
         </AnimatePresence>

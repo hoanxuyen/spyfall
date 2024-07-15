@@ -18,19 +18,21 @@ export default function SpyButton({
         return ["bg-secondary", "text-white"];
       case Color.Dark:
         return ["bg-dark", "text-white"];
+      case Color.None:
+        return [""];
     }
   };
 
   const getButtonSize = (size: SpyButtonSize): string[] => {
     switch (size) {
       case SpyButtonSize.SM:
-        return ["p-2"];
+        return ["p-1"];
       case SpyButtonSize.MD:
-        return ["p-3"];
+        return ["p-2"];
       case SpyButtonSize.LG:
-        return ["p-4"];
+        return ["p-3"];
       case SpyButtonSize.XL:
-        return ["p-5"];
+        return ["p-4"];
     }
   };
 

@@ -16,6 +16,22 @@ export default function SpyLobby() {
   const currentOption = useSelector(
     (state: RootState) => state.PlayerSlice.locationsOption
   );
+  const renderLocationSource = () => {
+    switch (currentOption) {
+      case LocationSource.DEFAULT:
+        return <SpyAvailableLocation />;
+      case LocationSource.CUSTOM:
+        return <SpyCustomLocation />;
+      case LocationSource.COMBINE:
+        return (
+          <>
+            <SpyAvailableLocation />
+            <SpyCustomLocation />
+          </>
+        );
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center">
@@ -32,18 +48,7 @@ export default function SpyLobby() {
           </div>
         </SpyModal>
       </div>
-      <div>
-        {currentOption === LocationSource.DEFAULT ? (
-          <SpyAvailableLocation />
-        ) : currentOption === LocationSource.CUSTOM ? (
-          <SpyCustomLocation />
-        ) : currentOption === LocationSource.COMBINE ? (
-          <>
-            <SpyAvailableLocation />
-            <SpyCustomLocation />
-          </>
-        ) : null}
-      </div>
+      <div>{renderLocationSource()}</div>
     </>
   );
 }

@@ -58,11 +58,13 @@ export default function SpyModal({ children }: { children: React.ReactNode }) {
           animate="animate"
           exit="exit"
           onKeyDown={handleKeyDown}
+          data-testid="spyModalID"
         >
           <motion.div
             className="modal-backdrop absolute inset-0 backdrop-blur-md backdrop-brightness-50 dark:backdrop-brightness-100"
             variants={backdropVariants}
             onClick={() => dispatch(setOpen(false))}
+            data-testid="spyModalBackdropID"
           ></motion.div>
           <motion.div
             className="Modal-container p-4 bg-white text-black prose-headings:!text-black text-sm sm:text-base rounded-lg sm:w-fit z-10 max-h-[80%] overflow-auto shadow-md"

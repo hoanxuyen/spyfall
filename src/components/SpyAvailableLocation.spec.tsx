@@ -44,7 +44,7 @@ describe("SpyAvailableLocation component", () => {
     const removeButtons = screen.getAllByText("X");
     await user.click(removeButtons[0]);
     expect(mockStore.dispatch).toHaveBeenCalledWith(
-      removeLocation({ typeLocation: "location", index: 0 })
+      removeLocation({ locationSource: LocationSource.DEFAULT, index: 0 })
     );
   });
 });

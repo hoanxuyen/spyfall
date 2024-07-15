@@ -5,7 +5,6 @@ export enum LocationSource {
   COMBINE = "COMBINE",
   CUSTOM = "CUSTOM",
 }
-
 type PlayerStateType = {
   value: number;
   spyIndex: null | number;
@@ -100,9 +99,9 @@ export const playerSlice = createSlice({
       state.customLocations = action.payload;
     },
     removeLocation: (state, action) => {
-      const { typeLocation, index } = action.payload;
-      switch (typeLocation) {
-        case "location":
+      const { locationSource, index } = action.payload;
+      switch (locationSource) {
+        case LocationSource.DEFAULT:
           {
             const newLocations = [
               ...state.locations.slice(0, index),
@@ -111,7 +110,7 @@ export const playerSlice = createSlice({
             state.locations = newLocations;
           }
           break;
-        case "customLocation": {
+        case LocationSource.CUSTOM: {
           const newCustomLocations = [
             ...state.customLocations.slice(0, index),
             ...state.customLocations.slice(index + 1),

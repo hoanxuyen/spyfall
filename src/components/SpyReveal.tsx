@@ -17,6 +17,21 @@ export default function SpyReveal() {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const handleRetry = () => dispatch(setOpen(true));
+  const handleResetAll = () => {
+    navigate("/");
+    dispatch(resetAllPlayers());
+  };
+  const handleKeepSettings = () => {
+    dispatch(resetPlayers());
+    dispatch(setOpen(false));
+    navigate("/lobby");
+  };
+  const handleResetEverything = () => {
+    dispatch(resetAllPlayers());
+    dispatch(setOpen(false));
+    navigate("/lobby");
+  };
   return (
     <div className="space-y-4">
       <ReactConfetti recycle={false} numberOfPieces={1000} />
@@ -35,19 +50,14 @@ export default function SpyReveal() {
           color={Color.Primary}
           label="Có"
           size={SpyButtonSize.MD}
-          onClick={() => {
-            dispatch(setOpen(true));
-          }}
+          onClick={handleRetry}
           customClass="w-20"
         />
         <SpyButton
           color={Color.Secondary}
           label="Không"
           size={SpyButtonSize.MD}
-          onClick={() => {
-            navigate("/");
-            dispatch(resetAllPlayers());
-          }}
+          onClick={handleResetAll}
           customClass="w-20"
         />
       </div>
@@ -63,22 +73,14 @@ export default function SpyReveal() {
               color={Color.Primary}
               label="Giữ nguyên"
               size={SpyButtonSize.MD}
-              onClick={() => {
-                dispatch(resetPlayers());
-                dispatch(setOpen(false));
-                navigate("/lobby");
-              }}
+              onClick={handleKeepSettings}
               customClass="basis-1/2 px-0"
             />
             <SpyButton
               color={Color.Secondary}
               label="Reset mọi thứ về ban đầu"
               size={SpyButtonSize.MD}
-              onClick={() => {
-                dispatch(resetAllPlayers());
-                dispatch(setOpen(false));
-                navigate("/lobby");
-              }}
+              onClick={handleResetEverything}
               customClass="basis-1/2 px-0"
             />
           </div>

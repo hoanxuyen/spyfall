@@ -4,7 +4,7 @@ import { SpyHeadingType } from "./typography/SpyHeadingType";
 import { RootState } from "../store/store";
 import { AnimatePresence, motion } from "framer-motion";
 import { LocationsTagClass, LocationTagsRemoveBtn } from "../SpyUlt";
-import { removeLocation } from "../features/PlayerSlice";
+import { LocationSource, removeLocation } from "../features/PlayerSlice";
 export default function SpyCustomLocation() {
   const locations: string[] = useSelector(
     (state: RootState) => state.PlayerSlice.customLocations
@@ -32,7 +32,7 @@ export default function SpyCustomLocation() {
                   onClick={() =>
                     dispatch(
                       removeLocation({
-                        typeLocation: "customLocation",
+                        locationSource: LocationSource.CUSTOM,
                         index: locationIndex,
                       })
                     )

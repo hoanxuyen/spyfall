@@ -17,7 +17,7 @@ import { Color } from "../theme";
 import { SpyButtonSize } from "./SpyButtonType";
 import { setOpen } from "../features/ModalSlice";
 import { useNavigate } from "react-router-dom";
-import SpyRadio from "./SpyRadio";
+import SpyRadio from "./form/SpyRadio";
 import { RootState } from "../store/store";
 import { useEffect, useState } from "react";
 import SpyInputWithBtn from "./form/SpyInputWithBtn";

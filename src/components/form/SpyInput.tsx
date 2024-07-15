@@ -45,13 +45,9 @@ export default function SpyInput({ name, label, rules, type }: InputType) {
         data-testid="formInputElement"
         {...register(name, rules)}
         type={getInputTypes(type)}
-        className={classNames(
-          "block",
-          "outline-none",
-          "bg-transparent",
-          "transition-all",
-          { "outline-red-300": errors[name] }
-        )}
+        className={classNames("block", "outline-none", "bg-transparent", {
+          "transition-all outline-red-300": errors[name],
+        })}
         initial={{ x: 0 }}
         animate={errors[name] ? "shake" : ""}
         variants={shakeVariants}

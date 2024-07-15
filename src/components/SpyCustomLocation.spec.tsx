@@ -62,7 +62,7 @@ describe("SpyCustomLocation component", () => {
     const removeButtons = screen.getAllByText("X");
     await user.click(removeButtons[0]);
     expect(store.dispatch).toHaveBeenCalledWith(
-      removeLocation({ typeLocation: "customLocation", index: 0 })
+      removeLocation({ locationSource: LocationSource.CUSTOM, index: 0 })
     );
   });
 });
