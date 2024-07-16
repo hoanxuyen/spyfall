@@ -19,6 +19,12 @@
     background-color: #ffffff;
   }
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #ffffff;
+    background-color: #242424;
+  }
+}
 /* Modal-specific scrollbar customization (recommended) */
 .Modal-container::-webkit-scrollbar {
   width: 8px;

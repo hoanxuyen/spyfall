@@ -39,31 +39,35 @@ export default function SpyModal({ children }: { children: React.ReactNode }) {
     };
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
+      document.body.classList.add("overflow-hidden");
     } else {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("overflow-hidden");
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("overflow-hidden");
     };
   }, [isOpen, dispatch]);
-
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="Modal-wrapper absolute inset-0 flex justify-center items-center m-4 sm:m-0"
+          className="Modal-wrapper absolute inset-0 flex justify-center items-center p-4"
           initial="exit"
           animate="animate"
           exit="exit"
           onKeyDown={handleKeyDown}
+          data-testid="spyModalID"
         >
           <motion.div
-            className="modal-backdrop absolute inset-0 backdrop-blur-md"
+            className="modal-backdrop absolute inset-0 backdrop-blur-md backdrop-brightness-50 dark:backdrop-brightness-100"
             variants={backdropVariants}
             onClick={() => dispatch(setOpen(false))}
+            data-testid="spyModalBackdropID"
           ></motion.div>
           <motion.div
-            className="Modal-container p-4 bg-white text-black prose-headings:!text-black text-sm sm:text-base rounded-lg sm:w-2/3 z-10 max-h-[80%] overflow-auto"
+            className="Modal-container p-4 bg-white text-black prose-headings:!text-black text-sm sm:text-base rounded-lg sm:w-fit z-10 max-h-[80%] overflow-auto shadow-md"
             variants={contentVariants}
           >
             {children}
