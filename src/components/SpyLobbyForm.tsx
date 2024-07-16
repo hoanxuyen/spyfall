@@ -20,7 +20,6 @@ import { useNavigate } from "react-router-dom";
 import SpyRadio from "./form/SpyRadio";
 import { RootState } from "../store/store";
 import { useEffect, useState } from "react";
-import SpyInputWithBtn from "./form/SpyInputWithBtn";
 import { AnimatePresence, motion } from "framer-motion";
 
 type SpyLobbyFormValues = {
@@ -156,8 +155,7 @@ export default function SpyLobbyForm() {
                 animate={{ height: "auto" }}
                 exit={{ height: 0 }}
               >
-                <SpyInputWithBtn
-                  data-testid="lobbyFormLocationInput"
+                <SpyInput
                   name="newLocation"
                   value={newLocationInput}
                   placeholder="Nhập địa điểm mới"

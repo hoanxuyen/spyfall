@@ -11,6 +11,7 @@ import PlayerSlice, {
   resetPlayers,
   setInitialPlayer,
   showOption,
+  updateCustomLocations,
 } from "../features/PlayerSlice";
 import { ElementTestIds } from "../SpyUlt";
 import TimerSlice, { setInitialValue } from "../features/TimerSlice";
@@ -164,5 +165,25 @@ describe("SpyLobbyForm Component", () => {
       showOption(LocationSource.DEFAULT)
     );
     expect(spyOnDispatch).toHaveBeenNthCalledWith(6, assignLocation());
+  });
+  it("Should add new customsLocation when clicking `+` button from the InputwithBtn", async () => {
+    const { spyOnDispatch } = factory(LocationSource.CUSTOM, []);
+    const inputWithBtn = screen.getByTestId(ElementTestIds.inputWithBtn);
+    await user.clear(inputWithBtn);
+    await user.type(inputWithBtn, "foo");
+    const plusButton = screen.getByText("+");
+    await user.click(plusButton);
+    expect(spyOnDispatch).toHaveBeenCalledWith(
+      updateCustomLocations([...[], "foo"])
+    );
+  });
+  it("Should not add new customLocation when clicking `+` button if the input contains empty string", async () => {
+    const { spyOnDispatch } = factory(LocationSource.CUSTOM, []);
+    const inputWithBtn = screen.getByTestId(ElementTestIds.inputWithBtn);
+    await user.clear(inputWithBtn);
+    await user.type(inputWithBtn, " ");
+    const plusButton = screen.getByText("+");
+    await user.click(plusButton);
+    expect(spyOnDispatch).not.toHaveBeenCalled();
   });
 });
