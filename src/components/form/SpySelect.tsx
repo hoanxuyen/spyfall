@@ -18,7 +18,11 @@ export default function SpySelect({ label, name, list }: SpySelect) {
       >
         {label}
       </label>
-      <select {...register(name)} data-testid="formSelect" className="block bg-transparent">
+      <select
+        {...register(name)}
+        data-testid="formSelect"
+        className="block dark:bg-black bg-inherit p-2"
+      >
         {options.map((option, optionIndex) => (
           <option
             key={optionIndex}

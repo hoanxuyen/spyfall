@@ -6,7 +6,7 @@ import {
   MdOutlineLightMode,
 } from "react-icons/md";
 import SpyToggle from "./form/SpyToggle";
-import { themeToggleButtonSize } from "../SpyUlt"; // Adjust the import path as necessary
+import { themeToggleButtonSize, themeToggleContainerClass } from "../SpyUlt"; // Adjust the import path as necessary
 
 export default function ThemeToggle() {
   const containerWidth = themeToggleButtonSize * 2;
@@ -32,7 +32,7 @@ export default function ThemeToggle() {
     switch (currentTheme) {
       case "dark":
         return (
-          <div className="flex gap-2 absolute top-4 left-4">
+          <div className={themeToggleContainerClass}>
             <MdDarkMode
               style={{
                 height: `${themeToggleButtonSize}px`,
@@ -55,7 +55,7 @@ export default function ThemeToggle() {
         );
       case "light":
         return (
-          <div className="flex gap-2 absolute top-4 left-4">
+          <div className={themeToggleContainerClass}>
             <MdOutlineDarkMode
               style={{
                 height: `${themeToggleButtonSize}px`,

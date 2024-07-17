@@ -14,7 +14,7 @@ export default function PageFadeIn({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         key={location.pathname}
-        className="h-full"
+        className="flex-auto flex flex-col justify-center"
       >
         {children}
       </motion.div>

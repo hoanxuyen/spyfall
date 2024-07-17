@@ -34,9 +34,9 @@ export default function SpyAnnounceRole() {
     }
   };
   return (
-    <div className="text-center flex flex-col justify-center items-center h-full">
+    <div className="flex flex-col flex-auto justify-center items-center">
       <AnimatePresence>
-        <div className="text-3xl">
+        <div className="text-3xl my-auto">
           {!ready ? (
             <SpyReady key="ready" />
           ) : currentPlayerIndex === spyIndex ? (

@@ -33,7 +33,7 @@ export default function SpyReveal() {
     navigate("/lobby");
   };
   return (
-    <div className="space-y-4">
+    <div className=" space-y-6 md:space-y-4">
       <ReactConfetti recycle={false} numberOfPieces={1000} />
       <SpyHeading
         text={`Chúc mừng bạn đã đoán ra được số ${(spyIndex as number) + 1} chính là điệp viên`}

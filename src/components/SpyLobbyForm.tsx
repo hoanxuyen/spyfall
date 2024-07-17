@@ -145,15 +145,16 @@ export default function SpyLobbyForm() {
             submitValue={LocationSource.COMBINE}
             onChange={handleRadioChange}
           />
+          {/**Display customLocation input */}
           <AnimatePresence>
             {[LocationSource.CUSTOM, LocationSource.COMBINE].includes(
               currentOption
             ) ? (
               <motion.div
                 className="basis-full mt-4"
-                initial={{ height: 0 }}
-                animate={{ height: "auto" }}
-                exit={{ height: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, height: 0 }}
               >
                 <SpyInput
                   name="newLocation"
