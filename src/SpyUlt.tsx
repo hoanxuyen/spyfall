@@ -17,3 +17,4 @@ export const LocationsTagClass =
 export const LocationTagsRemoveBtn =
   "text-red-600 font-bold text-sm sm:text-base";
 export const themeToggleButtonSize = 24;
+export const themeToggleContainerClass="flex gap-2 absolute top-2 left-4"

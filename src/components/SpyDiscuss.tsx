@@ -17,21 +17,21 @@ export default function SpyDiscuss() {
     return () => clearTimeout(timer);
   }, [time, navigate]);
   return (
-    <div className="flex justify-center flex-col m-auto gap-4 h-full">
+    <div className="flex justify-center flex-col gap-4 flex-auto">
       <SpyHeading
         text="Trong thời gian đếm ngược hãy cùng nhau bàn luận để đoán xem ai là điệp viên nhé!"
         type={SpyHeadingType.h3}
-        className="m-0"
+        className="mt-auto"
       />
-      <div className="flex flex-col w-full sm:w-1/2 mx-auto gap-4">
+      <div className="flex flex-col w-full sm:w-1/2 gap-4 mb-auto mx-auto">
         <CountDownTimer />
-        <SpyButton
-          color={Color.Secondary}
-          label="Đã tìm ra!!"
-          size={SpyButtonSize.MD}
-          onClick={() => navigate("/reveal")}
-        />
       </div>
+      <SpyButton
+        color={Color.Secondary}
+        label="Đã tìm ra!!"
+        size={SpyButtonSize.MD}
+        onClick={() => navigate("/reveal")}
+      />
     </div>
   );
 }

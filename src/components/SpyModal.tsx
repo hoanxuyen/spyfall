@@ -53,7 +53,7 @@ export default function SpyModal({ children }: { children: React.ReactNode }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="Modal-wrapper absolute inset-0 flex justify-center items-center p-4"
+          className="Modal-wrapper absolute inset-0 flex justify-center items-center p-4 !m-0"
           initial="exit"
           animate="animate"
           exit="exit"

@@ -6,11 +6,12 @@ export default function SpyGlobalLayout() {
   return (
     <>
       <ThemeToggle />
-      <div className="p-12 h-full flex flex-col">
+      {/** Toggle 32px + 16px padding */}
+      <div
+        className="p-4 h-full min-h-screen flex flex-col container mx-auto prose-h1:mt-12"
+      >
         <SpyTitle />
-        <div className="basis-full">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </>
   );

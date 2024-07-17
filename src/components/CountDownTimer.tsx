@@ -9,14 +9,16 @@ export default function CountDownTimer() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (value > 0) {
-      const intervalId = setInterval(() => { dispatch(decrement()) }, 1000);
+      const intervalId = setInterval(() => {
+        dispatch(decrement());
+      }, 1000);
       return () => clearInterval(intervalId);
     }
   }, [value, dispatch]);
   const minutes = Math.floor(value / 60);
   const seconds = value % 60;
   return (
-    <div className=" border-white p-4 border text-center text-5xl">
+    <div className="p-4 border-2 text-center text-5xl">
       <p data-testid="countdownLabel">
         {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
       </p>
