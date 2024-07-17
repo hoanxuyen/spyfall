@@ -64,10 +64,10 @@ describe("SpyButton Component", () => {
 
   it.each`
     size                | expected
-    ${SpyButtonSize.SM} | ${["p-2"]}
-    ${SpyButtonSize.MD} | ${["p-3"]}
-    ${SpyButtonSize.LG} | ${["p-4"]}
-    ${SpyButtonSize.XL} | ${["p-5"]}
+    ${SpyButtonSize.SM} | ${["p-1"]}
+    ${SpyButtonSize.MD} | ${["p-2"]}
+    ${SpyButtonSize.LG} | ${["p-3"]}
+    ${SpyButtonSize.XL} | ${["p-4"]}
   `(
     "should have the correct size classes when size is $size",
     ({ size, expected }) => {
