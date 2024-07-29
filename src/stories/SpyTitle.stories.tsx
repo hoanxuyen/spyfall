@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import SpyTitle from "../components/SpyTitle";
+import { BrowserRouter } from "react-router-dom";
 
 const meta: Meta<typeof SpyTitle> = {
   title: "Components/SpyTitle",
@@ -22,9 +23,11 @@ const meta: Meta<typeof SpyTitle> = {
   },
   decorators: [
     (Story) => (
-      <div className="prose">
-        <Story />
-      </div>
+      <BrowserRouter>
+        <div className="prose">
+          <Story />
+        </div>
+      </BrowserRouter>
     ),
   ],
 };
