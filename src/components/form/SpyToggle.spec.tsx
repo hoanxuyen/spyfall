@@ -1,84 +1,83 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SpyToggle from "./SpyToggle";
+import { ElementTestIds } from "../../SpyUlt";
 
 describe("SpyToggle component", () => {
-  const containerWidth = 64;
-  const knobSize = 32;
+  const themeToggleButtonSize = 12;
+  const containerWidth = 48;
+  const containerHeight = 24;
   const onChange = vi.fn();
+  const user = userEvent.setup();
   it("renders properly", () => {
     render(
       <SpyToggle
         containerWidth={containerWidth}
-        knobSize={knobSize}
+        containerHeight={containerHeight}
+        knobSize={themeToggleButtonSize}
         onChange={onChange}
         toggled={false}
       />
     );
-    const toggleCheckbox = screen.getByRole("checkbox");
-    expect(toggleCheckbox).toBeInTheDocument();
-    expect(toggleCheckbox).toHaveProperty("checked", false);
+    const toggle = screen.getByTestId(ElementTestIds.toggle);
+    expect(toggle).toBeInTheDocument();
+    expect(toggle).toHaveStyle({
+      width: `${containerWidth}px`,
+      height: `${containerHeight}px`,
+    });
   });
-
-  it("handles change event", async () => {
+  it("Should call onChange when clicked", async () => {
     render(
       <SpyToggle
         containerWidth={containerWidth}
-        knobSize={knobSize}
+        containerHeight={containerHeight}
+        knobSize={themeToggleButtonSize}
         onChange={onChange}
         toggled={false}
       />
     );
-    const toggleCheckbox = screen.getByRole("checkbox");
-    await userEvent.click(toggleCheckbox);
+    const toggle = screen.getByTestId(ElementTestIds.toggle);
+    await user.click(toggle);
     expect(onChange).toHaveBeenCalled();
   });
-
-  it("positions the knob correctly when toggled is false", async () => {
+  it("Should have `cursor-not-allowed` class the style if disabled", () => {
     render(
       <SpyToggle
         containerWidth={containerWidth}
-        knobSize={knobSize}
-        onChange={onChange}
-        toggled={false}
-      />
-    );
-    const toggleCheckbox = screen.getByRole("checkbox");
-    await waitFor(() => {
-      const knob = toggleCheckbox.nextElementSibling;
-      expect(knob).toHaveStyle(
-        `transform: translateX(${containerWidth - knobSize}px) translateZ(0)`
-      );
-    });
-  });
-
-  it("positions the knob correctly when toggled is true", async () => {
-    render(
-      <SpyToggle
-        containerWidth={containerWidth}
-        knobSize={knobSize}
-        onChange={onChange}
-        toggled={true}
-      />
-    );
-    const toggleCheckbox = screen.getByRole("checkbox");
-    await waitFor(() => {
-      const knob = toggleCheckbox.nextElementSibling;
-      expect(knob).toHaveStyle(`transform: none`);
-    });
-  });
-  it("applies disabled styles when disabled", () => {
-    render(
-      <SpyToggle
-        containerWidth={containerWidth}
-        knobSize={knobSize}
+        containerHeight={containerHeight}
+        knobSize={themeToggleButtonSize}
         onChange={onChange}
         toggled={false}
         disabled={true}
       />
     );
-    const toggleWrapper = screen.getByRole("checkbox").parentElement;
-    expect(toggleWrapper).toHaveClass("cursor-not-allowed");
-    expect(toggleWrapper).toHaveClass("opacity-50");
+    const toggle = screen.getByTestId(ElementTestIds.toggle);
+    expect(toggle).toHaveClass("cursor-not-allowed");
+  });
+  it("Should have correct postion when toggled is false", () => {
+    render(
+      <SpyToggle
+        containerWidth={containerWidth}
+        containerHeight={containerHeight}
+        knobSize={themeToggleButtonSize}
+        onChange={onChange}
+        toggled={false}
+      />
+    );
+    const toggle = screen.getByTestId(ElementTestIds.toggle);
+    expect(toggle).toHaveClass("justify-end");
+  });
+  it("Should have correct postion when toggled is true", () => {
+    render(
+      <SpyToggle
+        containerWidth={containerWidth}
+        containerHeight={containerHeight}
+        knobSize={themeToggleButtonSize}
+        onChange={onChange}
+        toggled={true}
+      />
+    );
+    const toggle = screen.getByTestId(ElementTestIds.toggle);
+    expect(toggle).toHaveClass("justify-start");
   });
 });
