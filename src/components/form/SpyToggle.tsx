@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import classNames from "classnames";
+import { ElementTestIds } from "../../SpyUlt";
 
 type SpyToggleType = {
   containerWidth: number;
+  containerHeight: number;
   knobSize: number;
   toggled: boolean;
   onChange: () => void;
@@ -11,6 +13,7 @@ type SpyToggleType = {
 
 export default function SpyToggle({
   containerWidth,
+  containerHeight,
   knobSize,
   toggled,
   onChange,
@@ -24,35 +27,23 @@ export default function SpyToggle({
   return (
     <div
       className={classNames(
-        "bg-slate-200 rounded-full relative cursor-pointer",
+        "switch bg-slate-200 w-12 h-6 rounded-full flex items-center px-1 cursor-pointer",
         {
-          "cursor-not-allowed opacity-50": disabled,
+          "justify-start": toggled,
+          "justify-end": !toggled,
+          "opacity-50 cursor-not-allowed": disabled,
         }
       )}
-      style={{
-        width: `${containerWidth}px`,
-        height: `${knobSize}px`,
-      }}
+      style={{ width: `${containerWidth}px`, height: `${containerHeight}px` }}
+      onClick={handleChange}
+      data-testid={ElementTestIds.toggle}
     >
-      <input
-        type="checkbox"
-        checked={toggled}
-        onChange={handleChange}
-        className="opacity-0 w-full h-full absolute"
-        disabled={disabled}
-      />
       <motion.div
-        className={classNames("bg-black rounded-full")}
-        style={{
-          width: `${knobSize}px`,
-          height: `${knobSize}px`,
-        }}
-        animate={{
-          translateX: toggled ? 0 : containerWidth - knobSize,
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        layout
+        className="knob bg-black rounded-full"
+        style={{ width: `${knobSize}px`, height: `${knobSize}px` }}
         onClick={handleChange}
-      />
+      ></motion.div>
     </div>
   );
 }

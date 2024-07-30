@@ -6,11 +6,9 @@ import {
   MdOutlineLightMode,
 } from "react-icons/md";
 import SpyToggle from "./form/SpyToggle";
-import { themeToggleButtonSize, themeToggleContainerClass } from "../SpyUlt"; // Adjust the import path as necessary
+import { themeToggleContainerClass } from "../SpyUlt";
 
 export default function ThemeToggle() {
-  const containerWidth = themeToggleButtonSize * 2;
-
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.theme || "dark"
   );
@@ -27,7 +25,9 @@ export default function ThemeToggle() {
   const handleClick = () => {
     setCurrentTheme(currentTheme === "dark" ? "light" : "dark");
   };
-
+  const themeToggleButtonSize = 12;
+  const containerWidth = 48;
+  const containerHeight = 24;
   const renderComponent = () => {
     switch (currentTheme) {
       case "dark":
@@ -35,20 +35,21 @@ export default function ThemeToggle() {
           <div className={themeToggleContainerClass}>
             <MdDarkMode
               style={{
-                height: `${themeToggleButtonSize}px`,
-                width: `${themeToggleButtonSize}px`,
+                height: `${containerHeight}px`,
+                width: `${containerHeight}px`,
               }}
             />
             <SpyToggle
               containerWidth={containerWidth}
+              containerHeight={containerHeight}
               knobSize={themeToggleButtonSize}
               onChange={handleClick}
               toggled={currentTheme === "dark"}
             />
             <MdOutlineLightMode
               style={{
-                height: `${themeToggleButtonSize}px`,
-                width: `${themeToggleButtonSize}px`,
+                height: `${containerHeight}px`,
+                width: `${containerHeight}px`,
               }}
             />
           </div>
@@ -58,20 +59,21 @@ export default function ThemeToggle() {
           <div className={themeToggleContainerClass}>
             <MdOutlineDarkMode
               style={{
-                height: `${themeToggleButtonSize}px`,
-                width: `${themeToggleButtonSize}px`,
+                height: `${containerHeight}px`,
+                width: `${containerHeight}px`,
               }}
             />
             <SpyToggle
               containerWidth={containerWidth}
+              containerHeight={containerHeight}
               knobSize={themeToggleButtonSize}
               onChange={handleClick}
               toggled={currentTheme === "dark"}
             />
             <MdLightMode
               style={{
-                height: `${themeToggleButtonSize}px`,
-                width: `${themeToggleButtonSize}px`,
+                height: `${containerHeight}px`,
+                width: `${containerHeight}px`,
               }}
             />
           </div>

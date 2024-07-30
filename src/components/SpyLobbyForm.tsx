@@ -126,7 +126,10 @@ export default function SpyLobbyForm() {
             list={timerOptions}
           />
         </div>
-        <div className="flex flex-row justify-between flex-wrap">
+        <motion.div
+          className="flex flex-row justify-between flex-wrap overflow-hidden"
+          animate={{ height: currentOption === "DEFAULT" ? "24px" : "96px" }} // 24px và 96px là chiều cao hiện tại của radio button khi có và không có custom location input
+        >
           <SpyRadio
             label="Có sẵn"
             name="locationOption"
@@ -150,12 +153,7 @@ export default function SpyLobbyForm() {
             {[LocationSource.CUSTOM, LocationSource.COMBINE].includes(
               currentOption
             ) ? (
-              <motion.div
-                className="basis-full mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, height: 0 }}
-              >
+              <motion.div className="basis-full mt-4" exit={{ opacity: 0 }}>
                 <SpyInput
                   name="newLocation"
                   value={newLocationInput}
@@ -182,7 +180,7 @@ export default function SpyLobbyForm() {
               </motion.div>
             ) : null}
           </AnimatePresence>
-        </div>
+        </motion.div>
         <div className="form-buttons flex flex-row gap-4 ">
           <SpyButton
             label="Bắt đầu trò chơi"
