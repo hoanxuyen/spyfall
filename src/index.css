@@ -42,3 +42,15 @@
 .Modal-container::-webkit-scrollbar-thumb:hover {
   background-color: #cbd5e1;
 }
+.expanded-content {
+  overflow: hidden;
+  transition: height 0.3s ease;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

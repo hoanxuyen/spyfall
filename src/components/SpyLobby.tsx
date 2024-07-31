@@ -10,6 +10,7 @@ import { RootState } from "../store/store";
 import SpyAvailableLocation from "./SpyAvailableLocation";
 import SpyCustomLocation from "./SpyCustomLocation";
 import { LocationSource } from "../features/PlayerSlice";
+import { AnimatePresence } from "framer-motion";
 
 export default function SpyLobby() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function SpyLobby() {
           <Rules />
           <div className="Modal-footer flex justify-end">
             <SpyButton
-              size={SpyButtonSize.SM}
+              size={SpyButtonSize.MD}
               color={Color.Secondary}
               label="Đã hiểu"
               onClick={() => dispatch(setOpen(false))}
@@ -48,7 +49,7 @@ export default function SpyLobby() {
           </div>
         </SpyModal>
       </div>
-      <div>{renderLocationSource()}</div>
+      <AnimatePresence>{renderLocationSource()}</AnimatePresence>
     </>
   );
 }
