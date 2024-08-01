@@ -12,7 +12,11 @@ describe("SpyAvailableLocation component", () => {
   let mockStore: Store;
   const initialState = {
     PlayerSlice: {
-      locations: ["Vòng xoay Lăng Cha Cả", "Maximark Cộng Hoà", "Hồ Con Rùa"],
+      locations: [
+        { name: "Vòng xoay Lăng Cha Cả", description: "", image: "" },
+        { name: "Maximark Cộng Hoà", description: "", image: "" },
+        { name: "Hồ Con Rùa", description: "", image: "" },
+      ],
       customLocations: [],
       locationsOption: LocationSource.DEFAULT,
       value: 4,

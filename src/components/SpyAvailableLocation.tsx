@@ -3,54 +3,89 @@ import SpyHeading from "./typography/SpyHeading";
 import { SpyHeadingType } from "./typography/SpyHeadingType";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { LocationSource, removeLocation } from "../features/PlayerSlice";
+import {
+  LocationSource,
+  LocationsType,
+  removeLocation,
+} from "../features/PlayerSlice";
 import { RootState } from "../store/store";
 import { LocationsTagClass, LocationTagsRemoveBtn } from "../SpyUlt";
 import SpyButton from "./SpyButton";
 import { Color } from "../theme";
 import { SpyButtonSize } from "./SpyButtonType";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
+
 export default function SpyAvailableLocation() {
   const dispatch = useDispatch();
-  const locations: string[] = useSelector(
+  const locationsList = useSelector(
     (state: RootState) => state.PlayerSlice.locations
   );
   const [selectedId, setSelectedId] = useState("");
+
+  const cardRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setSelectedId("");
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedId("");
+      }
+    };
+    if (selectedId) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedId]);
+
   return (
     <>
       <SpyHeading text="Danh sách địa điểm có sẵn:" type={SpyHeadingType.h3} />
       <div className="flex flex-row flex-wrap gap-2">
         <AnimatePresence>
-          {locations.map((location, locationIndex) => (
-            <motion.div
-              layoutId={location}
-              key={location}
-              className={classNames(LocationsTagClass, "cursor-pointer")}
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <p className="m-0" onClick={() => setSelectedId(location)}>
-                {location}
-              </p>
-              <SpyButton
-                label="X"
-                color={Color.None}
-                size={SpyButtonSize.SM}
-                customClass={LocationTagsRemoveBtn}
-                onClick={() =>
-                  dispatch(
-                    removeLocation({
-                      locationSource: LocationSource.DEFAULT,
-                      index: locationIndex,
-                    })
-                  )
-                }
-              />
-            </motion.div>
-          ))}
-          {/**Card*/}
+          {locationsList.map(
+            (location: LocationsType, locationIndex: number) => (
+              <motion.div
+                layoutId={location.name}
+                key={location.name}
+                className={classNames(LocationsTagClass, "cursor-pointer")}
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+              >
+                <p className="m-0" onClick={() => setSelectedId(location.name)}>
+                  {location.name}
+                </p>
+                <SpyButton
+                  label="X"
+                  color={Color.None}
+                  size={SpyButtonSize.SM}
+                  customClass={LocationTagsRemoveBtn}
+                  onClick={() =>
+                    dispatch(
+                      removeLocation({
+                        locationSource: LocationSource.DEFAULT,
+                        index: locationIndex,
+                      })
+                    )
+                  }
+                />
+              </motion.div>
+            )
+          )}
+          {/** Card */}
           {selectedId && (
             <motion.div
               className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
@@ -58,16 +93,17 @@ export default function SpyAvailableLocation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {locations.map(
-                (location) =>
-                  location === selectedId && (
+              {locationsList.map(
+                (location: LocationsType) =>
+                  location.name === selectedId && (
                     <motion.div
                       className="bg-white rounded-lg p-4 shadow-md max-w-lg mx-auto"
-                      layoutId={location}
-                      key={location}
+                      layoutId={location.name}
+                      key={location.name}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.8, opacity: 0 }}
+                      ref={cardRef}
                     >
                       <motion.div className="relative prose-headings:!text-black text-black">
                         <motion.div
@@ -75,20 +111,19 @@ export default function SpyAvailableLocation() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
-                        >
-                          <SpyButton
-                            color={Color.None}
-                            label="X"
-                            size={SpyButtonSize.SM}
-                            onClick={() => setSelectedId("")}
-                          />
-                        </motion.div>
+                        ></motion.div>
                         <div>
+                          <img
+                            src={location.image}
+                            alt="Ho Chi Minh places"
+                            className="rounded aspect-video"
+                          />
                           <SpyHeading
-                            text={location}
-                            type={SpyHeadingType.h3}
+                            text={location.name}
+                            type={SpyHeadingType.h2}
                             className="card__title m-0"
                           />
+                          <p>{location.description}</p>
                         </div>
                       </motion.div>
                     </motion.div>
