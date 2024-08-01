@@ -97,8 +97,8 @@ export default function SpyAvailableLocation() {
                 (location: LocationsType) =>
                   location.name === selectedId && (
                     <motion.div
-                      className="bg-white rounded-lg p-4 shadow-md max-w-lg mx-auto"
-                      layoutId={location.name}
+                      className="bg-white rounded-lg shadow-md max-w-lg mx-4 sm:mx-auto overflow-hidden"
+                      layoutId={location.name} // Khi có chung layoutId thì sẽ có transition giữa cái cũ và cái xuất hiện mới nhất https://www.framer.com/motion/layout-animations/#shared-layout-animations
                       key={location.name}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
@@ -112,18 +112,21 @@ export default function SpyAvailableLocation() {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
                         ></motion.div>
-                        <div>
+                        <div className="space-y-4">
                           <img
                             src={location.image}
                             alt="Ho Chi Minh places"
-                            className="rounded aspect-video"
+                            className="aspect-video m-0"
+                            loading="lazy"
                           />
-                          <SpyHeading
-                            text={location.name}
-                            type={SpyHeadingType.h2}
-                            className="card__title m-0"
-                          />
-                          <p>{location.description}</p>
+                          <div className="px-4 pb-4space-y-4">
+                            <SpyHeading
+                              text={location.name}
+                              type={SpyHeadingType.h2}
+                              className="card__title m-0"
+                            />
+                            <p>{location.description}</p>
+                          </div>
                         </div>
                       </motion.div>
                     </motion.div>
