@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import customImage from "../assets/lang-cha-ca.jpg";
 export enum LocationSource {
   DEFAULT = "DEFAULT",
   COMBINE = "COMBINE",
@@ -37,7 +37,7 @@ const initialState: PlayerStateType = {
       name: "Vòng xoay Lăng Cha Cả",
       description:
         "Một trong những nút giao thông quan trọng nhất tại quận Tân Bình, TP.HCM. Vòng xoay này kết nối các trục đường lớn như Cộng Hòa, Hoàng Văn Thụ và Trường Chinh, giúp điều tiết giao thông trong khu vực đông đúc này.",
-      image: "/lang-cha-ca.jpg",
+      image: customImage,
     },
     {
       name: "Maximark Cộng Hoà",
