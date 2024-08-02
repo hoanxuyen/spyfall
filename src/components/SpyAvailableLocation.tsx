@@ -116,7 +116,7 @@ export default function SpyAvailableLocation() {
                           <img
                             src={location.image}
                             alt="Ho Chi Minh places"
-                            className="aspect-video m-0"
+                            className="aspect-video m-0 w-full h-auto"
                             loading="lazy"
                           />
                           <div className="px-4 pb-4space-y-4">
