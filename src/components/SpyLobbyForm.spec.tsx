@@ -41,9 +41,9 @@ describe("SpyLobbyForm Component", () => {
       preloadedState: {
         PlayerSlice: {
           locations: [
-            "Địa điểm có sẵn 1",
-            "Địa điểm có sẵn 2",
-            "Địa điểm có sẵn 3",
+            { name: "Địa điểm có sẵn 1", description: "", image: "" },
+            { name: "Địa điểm có sẵn 2", description: "", image: "" },
+            { name: "Địa điểm có sẵn 3", description: "", image: "" },
           ],
           customLocations: customLocations,
           locationsOption: locationSource,
