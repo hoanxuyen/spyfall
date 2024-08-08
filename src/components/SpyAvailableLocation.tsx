@@ -39,14 +39,17 @@ export default function SpyAvailableLocation() {
     if (selectedId) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("keydown", handleKeyDown);
+      document.body.classList.add("overflow-hidden");
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("overflow-hidden");
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("overflow-hidden");
     };
   }, [selectedId]);
 
